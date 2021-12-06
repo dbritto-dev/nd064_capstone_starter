@@ -46,21 +46,24 @@ jobs:
         with:
           context: src/frontend
           push: true
-          tags: minorpatch/frontend:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build and push Docker image for Product Catalog Service
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: src/productcatalogservice
           push: true
-          tags: minorpatch/productcatalogservice:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build and push Docker image for Currency Service
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: src/currencyservice
           push: true
-          tags: minorpatch/currencyservice:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build and push Docker image for Ad Service
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
